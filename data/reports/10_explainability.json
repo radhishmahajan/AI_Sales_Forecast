@@ -1,0 +1,238 @@
+{
+  "generated_at": "2026-11-14T17:14:50Z",
+  "model_name": "hist_gradient_boosting",
+  "method": "Permutation importance on 15,000 test rows, 5 repeats, metric = increase in MAE.",
+  "features": [
+    {
+      "feature": "rolling_mean_28",
+      "importance_mae_increase": 3.9225426589665666,
+      "importance_std": 0.32348016343265756,
+      "family": "rolling",
+      "importance_share_pct": 30.157253288159087,
+      "direction_rank_corr": 0.8633185208431253
+    },
+    {
+      "feature": "hist_mean_demand",
+      "importance_mae_increase": 3.235303683604934,
+      "importance_std": 0.10077058496709962,
+      "family": "history",
+      "importance_share_pct": 24.87362946265404,
+      "direction_rank_corr": 0.814437474064929
+    },
+    {
+      "feature": "hist_std_demand",
+      "importance_mae_increase": 1.9403739006178433,
+      "importance_std": 0.0922810631474212,
+      "family": "history",
+      "importance_share_pct": 14.917963240221905,
+      "direction_rank_corr": 0.7188930192555244
+    },
+    {
+      "feature": "rolling_mean_7",
+      "importance_mae_increase": 0.8033244413937226,
+      "importance_std": 0.03988518782407603,
+      "family": "rolling",
+      "importance_share_pct": 6.176110945868464,
+      "direction_rank_corr": 0.7948342616719885
+    },
+    {
+      "feature": "rolling_max_7",
+      "importance_mae_increase": 0.6342245156623207,
+      "importance_std": 0.027744341613300062,
+      "family": "rolling",
+      "importance_share_pct": 4.876038586009333,
+      "direction_rank_corr": 0.7479516904646694
+    },
+    {
+      "feature": "rolling_mean_14",
+      "importance_mae_increase": 0.6320458866739059,
+      "importance_std": 0.042799909783793076,
+      "family": "rolling",
+      "importance_share_pct": 4.859288872383055,
+      "direction_rank_corr": 0.8372720691057519
+    },
+    {
+      "feature": "sales_frequency",
+      "importance_mae_increase": 0.5363176564567688,
+      "importance_std": 0.037455111058619976,
+      "family": "history",
+      "importance_share_pct": 4.123312049062542,
+      "direction_rank_corr": 0.45916795668032706
+    },
+    {
+      "feature": "rolling_std_7",
+      "importance_mae_increase": 0.42462596392515906,
+      "importance_std": 0.024590372151146643,
+      "family": "rolling",
+      "importance_share_pct": 3.264605094235859,
+      "direction_rank_corr": 0.7512735581699356
+    },
+    {
+      "feature": "avg_price_28",
+      "importance_mae_increase": 0.23367461326727082,
+      "importance_std": 0.01297518461185115,
+      "family": "price",
+      "importance_share_pct": 1.7965348275320745,
+      "direction_rank_corr": -0.48992309599017075
+    },
+    {
+      "feature": "day_of_week",
+      "importance_mae_increase": 0.1886035329279423,
+      "importance_std": 0.049361007364866864,
+      "family": "calendar",
+      "importance_share_pct": 1.4500197978849023,
+      "direction_rank_corr": -0.20024947330695145
+    },
+    {
+      "feature": "day",
+      "importance_mae_increase": 0.1870216408388238,
+      "importance_std": 0.024667541327820324,
+      "family": "calendar",
+      "importance_share_pct": 1.437857910926954,
+      "direction_rank_corr": 0.004024878511844424
+    },
+    {
+      "feature": "last_known_price",
+      "importance_mae_increase": 0.1553648786680945,
+      "importance_std": 0.019334706357070266,
+      "family": "price",
+      "importance_share_pct": 1.194474708227199,
+      "direction_rank_corr": -0.47138713116446973
+    },
+    {
+      "feature": "price_change_pct",
+      "importance_mae_increase": 0.07377470232108578,
+      "importance_std": 0.012113369903634557,
+      "family": "price",
+      "importance_share_pct": 0.5671939294451623,
+      "direction_rank_corr": -0.006127736865493106
+    },
+    {
+      "feature": "product_age_days",
+      "importance_mae_increase": 0.036118077107442303,
+      "importance_std": 0.013025908213736325,
+      "family": "history",
+      "importance_share_pct": 0.27768263963185663,
+      "direction_rank_corr": 0.011467366238222811
+    },
+    {
+      "feature": "days_since_prev_sale",
+      "importance_mae_increase": 0.003646456151275146,
+      "importance_std": 0.012045302364370675,
+      "family": "history",
+      "importance_share_pct": 0.028034647757570155,
+      "direction_rank_corr": -0.3574908643505153
+    },
+    {
+      "feature": "week_of_year",
+      "importance_mae_increase": 0.0,
+      "importance_std": 0.0,
+      "family": "calendar",
+      "importance_share_pct": 0.0,
+      "direction_rank_corr": 0.1203265137781759
+    },
+    {
+      "feature": "month",
+      "importance_mae_increase": 0.0,
+      "importance_std": 0.0,
+      "family": "calendar",
+      "importance_share_pct": 0.0,
+      "direction_rank_corr": 0.06623800904463939
+    },
+    {
+      "feature": "year",
+      "importance_mae_increase": 0.0,
+      "importance_std": 0.0,
+      "family": "calendar",
+      "importance_share_pct": 0.0,
+      "direction_rank_corr": 0.0
+    },
+    {
+      "feature": "is_month_start",
+      "importance_mae_increase": -0.000330929289151527,
+      "importance_std": 9.657377091044156e-05,
+      "family": "calendar",
+      "importance_share_pct": 0.0,
+      "direction_rank_corr": 0.04371760941892233
+    },
+    {
+      "feature": "is_month_end",
+      "importance_mae_increase": -0.0004690797375900502,
+      "importance_std": 0.0002933972425598772,
+      "family": "calendar",
+      "importance_share_pct": 0.0,
+      "direction_rank_corr": 0.02318820360812334
+    },
+    {
+      "feature": "is_weekend",
+      "importance_mae_increase": -0.008183356474253856,
+      "importance_std": 0.0020503156637549196,
+      "family": "calendar",
+      "importance_share_pct": 0.0,
+      "direction_rank_corr": -0.3058382747519436
+    },
+    {
+      "feature": "last_open_day_demand",
+      "importance_mae_increase": -0.01980871705787095,
+      "importance_std": 0.009972618832561021,
+      "family": "lag",
+      "importance_share_pct": 0.0,
+      "direction_rank_corr": 0.5110286992685963
+    },
+    {
+      "feature": "lag_1",
+      "importance_mae_increase": -0.0844682346409904,
+      "importance_std": 0.016891444493225206,
+      "family": "lag",
+      "importance_share_pct": 0.0,
+      "direction_rank_corr": 0.5618070797733535
+    },
+    {
+      "feature": "lag_14",
+      "importance_mae_increase": -0.11236038553380823,
+      "importance_std": 0.03774588885007976,
+      "family": "lag",
+      "importance_share_pct": 0.0,
+      "direction_rank_corr": 0.5471316478752539
+    },
+    {
+      "feature": "lag_28",
+      "importance_mae_increase": -0.14183561034400824,
+      "importance_std": 0.021082382570677193,
+      "family": "lag",
+      "importance_share_pct": 0.0,
+      "direction_rank_corr": 0.5223069941503115
+    },
+    {
+      "feature": "lag_7",
+      "importance_mae_increase": -0.1822770194418098,
+      "importance_std": 0.007959269802791826,
+      "family": "lag",
+      "importance_share_pct": 0.0,
+      "direction_rank_corr": 0.5868317156006123
+    },
+    {
+      "feature": "prev_day_open",
+      "importance_mae_increase": -0.19347652037714624,
+      "importance_std": 0.031235928368928766,
+      "family": "calendar",
+      "importance_share_pct": 0.0,
+      "direction_rank_corr": 0.3058382747519436
+    }
+  ],
+  "families": {
+    "rolling": 49.33,
+    "history": 44.22,
+    "price": 3.56,
+    "calendar": 2.89,
+    "lag": 0.0
+  },
+  "business_summary": "The hist_gradient_boosting model bases its forecast mainly on recent averages / volatility of demand (49% of total importance). rolling: 49%; history: 44%; price: 4%; calendar: 3%; lag: 0%.",
+  "top_feature_explanations": [
+    "rolling_mean_28 (30.2% of importance): Mean daily units over D-28..D-1. Shuffling it raises test MAE by 3.92 units/day; higher values push the forecast UP (rank corr +0.86).",
+    "hist_mean_demand (24.9% of importance): Average daily units over the product's whole history up to D-1. Shuffling it raises test MAE by 3.24 units/day; higher values push the forecast UP (rank corr +0.81).",
+    "hist_std_demand (14.9% of importance): Standard deviation of daily units over the product's history up to D-1 (demand variability). Shuffling it raises test MAE by 1.94 units/day; higher values push the forecast UP (rank corr +0.72).",
+    "rolling_mean_7 (6.2% of importance): Mean daily units over D-7..D-1 (shift(1) then rolling 7). Shuffling it raises test MAE by 0.80 units/day; higher values push the forecast UP (rank corr +0.79).",
+    "rolling_max_7 (4.9% of importance): Largest daily units over D-7..D-1 (recent bulk orders). Shuffling it raises test MAE by 0.63 units/day; higher values push the forecast UP (rank corr +0.75)."
+  ]
+}

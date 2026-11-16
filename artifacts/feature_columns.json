@@ -1,0 +1,33 @@
+{
+  "target": "NEXT_DAY_DEMAND",
+  "features": [
+    "lag_1",
+    "lag_7",
+    "lag_14",
+    "lag_28",
+    "last_open_day_demand",
+    "prev_day_open",
+    "rolling_mean_7",
+    "rolling_mean_14",
+    "rolling_mean_28",
+    "rolling_std_7",
+    "rolling_max_7",
+    "day",
+    "month",
+    "year",
+    "day_of_week",
+    "week_of_year",
+    "is_weekend",
+    "is_month_start",
+    "is_month_end",
+    "last_known_price",
+    "avg_price_28",
+    "price_change_pct",
+    "sales_frequency",
+    "days_since_prev_sale",
+    "hist_mean_demand",
+    "hist_std_demand",
+    "product_age_days"
+  ],
+  "version": "1.0"
+}

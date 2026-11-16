@@ -1,0 +1,247 @@
+{
+  "report": "Stage 3 - Preprocessing Report",
+  "version": "1.0",
+  "generated_at": "2026-11-14T17:16:02Z",
+  "forecast_target_policy": "Gross fulfilled demand: daily sum of Quantity over SALE rows per StockCode. Returns/cancellations are tracked separately and NOT subtracted; sale lines fully reversed by a matching cancellation (REVERSED_SALE) are excluded because they were never fulfilled.",
+  "counts": {
+    "original_rows": 541909,
+    "missing_values_by_column": {
+      "InvoiceNo": 0,
+      "StockCode": 0,
+      "Description": 1454,
+      "Quantity": 0,
+      "InvoiceDate": 0,
+      "UnitPrice": 0,
+      "CustomerID": 135080,
+      "Country": 0
+    },
+    "missing_value_cells_total": 136534,
+    "duplicate_rows_removed": 5268,
+    "rows_after_deduplication": 536641,
+    "invalid_rows": 0,
+    "cancellation_lines": 9251,
+    "cancelled_invoices": 3836,
+    "return_lines": 8668,
+    "reversed_sale_lines": 2805,
+    "stock_adjustment_lines": 1336,
+    "accounting_adjustment_lines": 3,
+    "non_product_lines": 2354,
+    "zero_price_lines": 1157,
+    "removed_rows_total": 22174,
+    "retained_sale_rows": 519735,
+    "final_dimensions": {
+      "rows": 519735,
+      "columns": 11
+    },
+    "missing_customer_id_in_sales": 131387,
+    "descriptions_filled_from_stockcode": 1341,
+    "descriptions_standardised": 8621,
+    "extreme_quantity_lines_flagged_kept": 2289
+  },
+  "transaction_types": {
+    "SALE": {
+      "rows": 519735,
+      "revenue": 9823459.37,
+      "meaning": "Real fulfilled product sale (positive quantity and price). Used for demand and revenue."
+    },
+    "REVERSED_SALE": {
+      "rows": 2805,
+      "revenue": 423759.95,
+      "meaning": "Sale cancelled in full later by the same customer (same product and quantity). Excluded from demand."
+    },
+    "RETURN": {
+      "rows": 8668,
+      "revenue": -475901.16,
+      "meaning": "Product line on a cancellation ('C') invoice: goods returned/cancelled. Tracked separately."
+    },
+    "CANCELLATION_NON_PRODUCT": {
+      "rows": 583,
+      "revenue": -418078.57,
+      "meaning": "Cancellation line for discounts, postage, fees. Not product demand."
+    },
+    "STOCK_ADJUSTMENT": {
+      "rows": 1336,
+      "revenue": 0.0,
+      "meaning": "Negative quantity with zero price on a normal invoice (damaged, lost, stock checks)."
+    },
+    "ACCOUNTING_ADJUSTMENT": {
+      "rows": 3,
+      "revenue": -11062.06,
+      "meaning": "Bad-debt adjustment invoices starting with 'A'. Not sales."
+    },
+    "NON_PRODUCT": {
+      "rows": 2354,
+      "revenue": 383829.42,
+      "meaning": "Postage, carriage, bank charges, marketplace fees, manual lines, gift vouchers."
+    },
+    "ZERO_PRICE": {
+      "rows": 1157,
+      "revenue": 0.0,
+      "meaning": "Positive quantity with zero price: no revenue, often samples or data fixes."
+    },
+    "INVALID": {
+      "rows": 0,
+      "revenue": 0.0,
+      "meaning": "Missing/invalid timestamp, StockCode or quantity."
+    }
+  },
+  "revenue": {
+    "gross_fulfilled_sales_revenue": 9823459.37,
+    "gross_invoiced_revenue_incl_reversed": 10247219.32,
+    "cancellations_and_returns_value": -893979.73,
+    "net_revenue_after_cancellations": 9353239.59,
+    "note": "Dashboard 'revenue' = gross fulfilled sales revenue (SALE rows). Net revenue is shown separately."
+  },
+  "outliers": {
+    "rule": "Flag if quantity > product's 99th percentile AND >= 10x product median AND >= 100 units. Flagged rows are KEPT.",
+    "flagged_lines": 2289,
+    "largest_flagged_lines": [
+      {
+        "InvoiceNo": "573008",
+        "StockCode": "84077",
+        "Description": "WORLD WAR 2 GLIDERS ASSTD DESIGNS",
+        "Quantity": 4800,
+        "UnitPrice": 0.21,
+        "InvoiceDate": "2011-10-27T12:26:00",
+        "CustomerID": 12901
+      },
+      {
+        "InvoiceNo": "554868",
+        "StockCode": "22197",
+        "Description": "POPCORN HOLDER",
+        "Quantity": 4300,
+        "UnitPrice": 0.72,
+        "InvoiceDate": "2011-05-27T10:52:00",
+        "CustomerID": 13135
+      },
+      {
+        "InvoiceNo": "544612",
+        "StockCode": "22053",
+        "Description": "EMPIRE DESIGN ROSETTE",
+        "Quantity": 3906,
+        "UnitPrice": 0.82,
+        "InvoiceDate": "2011-02-22T10:43:00",
+        "CustomerID": 18087
+      },
+      {
+        "InvoiceNo": "560599",
+        "StockCode": "18007",
+        "Description": "ESSENTIAL BALM 3.5G TIN IN ENVELOPE",
+        "Quantity": 3186,
+        "UnitPrice": 0.06,
+        "InvoiceDate": "2011-07-19T17:04:00",
+        "CustomerID": 14609
+      },
+      {
+        "InvoiceNo": "550461",
+        "StockCode": "21108",
+        "Description": "FAIRY CAKE FLANNEL ASSORTED COLOUR",
+        "Quantity": 3114,
+        "UnitPrice": 2.1,
+        "InvoiceDate": "2011-04-18T13:20:00",
+        "CustomerID": 15749
+      },
+      {
+        "InvoiceNo": "573995",
+        "StockCode": "16014",
+        "Description": "SMALL CHINESE STYLE SCISSOR",
+        "Quantity": 3000,
+        "UnitPrice": 0.32,
+        "InvoiceDate": "2011-11-02T11:24:00",
+        "CustomerID": 16308
+      },
+      {
+        "InvoiceNo": "536830",
+        "StockCode": "84077",
+        "Description": "WORLD WAR 2 GLIDERS ASSTD DESIGNS",
+        "Quantity": 2880,
+        "UnitPrice": 0.18,
+        "InvoiceDate": "2010-12-02T17:38:00",
+        "CustomerID": 16754
+      },
+      {
+        "InvoiceNo": "562439",
+        "StockCode": "84879",
+        "Description": "ASSORTED COLOUR BIRD ORNAMENT",
+        "Quantity": 2880,
+        "UnitPrice": 1.45,
+        "InvoiceDate": "2011-08-04T18:06:00",
+        "CustomerID": 12931
+      },
+      {
+        "InvoiceNo": "554272",
+        "StockCode": "21977",
+        "Description": "PACK OF 60 PINK PAISLEY CAKE CASES",
+        "Quantity": 2700,
+        "UnitPrice": 0.42,
+        "InvoiceDate": "2011-05-23T13:08:00",
+        "CustomerID": 12901
+      },
+      {
+        "InvoiceNo": "543057",
+        "StockCode": "84077",
+        "Description": "WORLD WAR 2 GLIDERS ASSTD DESIGNS",
+        "Quantity": 2592,
+        "UnitPrice": 0.21,
+        "InvoiceDate": "2011-02-03T10:50:00",
+        "CustomerID": 16333
+      }
+    ],
+    "largest_reversed_sales": [
+      {
+        "InvoiceNo": "581483",
+        "StockCode": "23843",
+        "Description": "PAPER CRAFT , LITTLE BIRDIE",
+        "Quantity": 80995,
+        "InvoiceDate": "2011-12-09T09:15:00",
+        "CustomerID": 16446
+      },
+      {
+        "InvoiceNo": "541431",
+        "StockCode": "23166",
+        "Description": "MEDIUM CERAMIC TOP STORAGE JAR",
+        "Quantity": 74215,
+        "InvoiceDate": "2011-01-18T10:01:00",
+        "CustomerID": 12346
+      },
+      {
+        "InvoiceNo": "540815",
+        "StockCode": "21108",
+        "Description": "FAIRY CAKE FLANNEL ASSORTED COLOUR",
+        "Quantity": 3114,
+        "InvoiceDate": "2011-01-11T12:55:00",
+        "CustomerID": 15749
+      },
+      {
+        "InvoiceNo": "540815",
+        "StockCode": "21175",
+        "Description": "GIN + TONIC DIET METAL SIGN",
+        "Quantity": 2000,
+        "InvoiceDate": "2011-01-11T12:55:00",
+        "CustomerID": 15749
+      },
+      {
+        "InvoiceNo": "540815",
+        "StockCode": "85123A",
+        "Description": "WHITE HANGING HEART T-LIGHT HOLDER",
+        "Quantity": 1930,
+        "InvoiceDate": "2011-01-11T12:55:00",
+        "CustomerID": 15749
+      }
+    ]
+  },
+  "steps": [
+    "1. Removed exact duplicate rows (identical in all 8 columns).",
+    "2. Labelled every row with one TransactionType (see transaction_types).",
+    "3. Matched cancellations to the sales they fully reverse (same customer, product, quantity).",
+    "4. Standardised descriptions: one canonical upper-case description per StockCode; missing descriptions filled from the same StockCode.",
+    "5. Kept only SALE rows in the cleaned sales dataset; computed Revenue = Quantity x UnitPrice.",
+    "6. Flagged (did not delete) extreme quantities for investigation.",
+    "7. Built a product catalog from cleaned sales."
+  ],
+  "products_in_clean_sales": 3903,
+  "date_range_clean_sales": {
+    "min": "2010-12-01T08:26:00",
+    "max": "2011-12-09T12:50:00"
+  }
+}

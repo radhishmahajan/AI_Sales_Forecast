@@ -1,0 +1,964 @@
+{
+  "report": "Stage 2 - Exploratory Data Analysis",
+  "generated_at": "2026-11-14T17:15:53Z",
+  "data_used": "SALE rows from Stage 3 classification (duplicates, cancellations, returns, postage/fees and adjustments excluded).",
+  "kpis": {
+    "total_revenue": 9823459.37,
+    "total_quantity": 5338098,
+    "total_transactions": 19648,
+    "total_invoice_lines": 519735,
+    "total_products": 3903,
+    "total_customers": 4324,
+    "total_countries": 38,
+    "average_order_value": 499.97,
+    "average_lines_per_order": 26.45,
+    "trading_days": 305,
+    "average_daily_revenue": 32208.06,
+    "first_date": "2010-12-01T08:26:00",
+    "last_date": "2011-12-09T12:50:00"
+  },
+  "charts": [
+    {
+      "title": "Transaction composition",
+      "file": "figures/02_transaction_composition.png",
+      "interpretation": "96.8% of lines are genuine product sales. Returns, reversed orders, postage/fees and adjustments are kept out of demand so they do not distort forecasts."
+    },
+    {
+      "title": "Daily sales",
+      "file": "figures/02_daily_sales.png",
+      "interpretation": "Revenue is noisy day to day (busiest day 14 Nov 2011: £111k; daily std = £17k). Average revenue per trading day is highest in December 2011 (£56k), 2.6x the lowest month (February 2011)."
+    },
+    {
+      "title": "Weekly sales",
+      "file": "figures/02_weekly_sales.png",
+      "interpretation": "Units and revenue move together. Full weeks range from £82k to £371k revenue, so weekly planning must allow for a large swing. 1 week(s) had no trading at all (holiday closure)."
+    },
+    {
+      "title": "Monthly revenue",
+      "file": "figures/02_monthly_revenue.png",
+      "interpretation": "Best full month: November 2011 (£1.4M); weakest: February 2011 (£505k). With only ~one year of data this is a single seasonal cycle, so it is described as an observed peak in this period, not a proven yearly pattern."
+    },
+    {
+      "title": "Top 10 products by units sold",
+      "file": "figures/02_top_products_quantity.png",
+      "interpretation": "'POPCORN HOLDER' leads with 56,676 units. These 10 products account for 7.0% of all units; their average selling price is £1.17 per unit."
+    },
+    {
+      "title": "Top 10 products by revenue",
+      "file": "figures/02_top_products_revenue.png",
+      "interpretation": "'REGENCY CAKESTAND 3 TIER' leads with 170,229 GBP. These 10 products account for 8.1% of all revenue; their average selling price is £2.89 per unit."
+    },
+    {
+      "title": "Product demand variability",
+      "file": "figures/02_demand_variability.png",
+      "interpretation": "99% of products with >= 20 sale days have CV > 1 (median CV 2.87; median share of trading days with a sale 34%). Daily product demand is intermittent and bursty, so safety stock matters and day-level forecast errors will be large."
+    },
+    {
+      "title": "Country-wise revenue",
+      "file": "figures/02_country_revenue.png",
+      "interpretation": "United Kingdom generates 84.7% of revenue; a log scale keeps the next markets (Netherlands, EIRE, Germany, France) visible. Demand is dominated by one market."
+    },
+    {
+      "title": "Day-of-week pattern",
+      "file": "figures/02_day_of_week.png",
+      "interpretation": "Busiest weekday: Thursday; quietest: Sunday. No trading on: Saturday — the forecast treats these as closed days."
+    },
+    {
+      "title": "Hourly pattern",
+      "file": "figures/02_hourly_orders.png",
+      "interpretation": "Orders peak around 12:00; 98.1% of orders arrive between 08:00 and 17:59 (first hour with orders: 6:00, last: 20:00)."
+    },
+    {
+      "title": "Customer purchase frequency",
+      "file": "figures/02_customer_frequency.png",
+      "interpretation": "65% of identified customers ordered more than once (median 2 orders, maximum 203). Identified customers generate 84.6% of revenue."
+    }
+  ],
+  "monthly": [
+    {
+      "period": "2010-12-01T00:00:00",
+      "revenue": 766924.53,
+      "quantity": 354147,
+      "transactions": 1542,
+      "customers": 883,
+      "is_partial": false
+    },
+    {
+      "period": "2011-01-01T00:00:00",
+      "revenue": 564732.93,
+      "quantity": 301037,
+      "transactions": 1073,
+      "customers": 737,
+      "is_partial": false
+    },
+    {
+      "period": "2011-02-01T00:00:00",
+      "revenue": 504714.91,
+      "quantity": 281628,
+      "transactions": 1088,
+      "customers": 756,
+      "is_partial": false
+    },
+    {
+      "period": "2011-03-01T00:00:00",
+      "revenue": 682306.56,
+      "quantity": 372793,
+      "transactions": 1431,
+      "customers": 970,
+      "is_partial": false
+    },
+    {
+      "period": "2011-04-01T00:00:00",
+      "revenue": 509523.35,
+      "quantity": 305600,
+      "transactions": 1225,
+      "customers": 848,
+      "is_partial": false
+    },
+    {
+      "period": "2011-05-01T00:00:00",
+      "revenue": 732652.39,
+      "quantity": 390916,
+      "transactions": 1652,
+      "customers": 1051,
+      "is_partial": false
+    },
+    {
+      "period": "2011-06-01T00:00:00",
+      "revenue": 690041.68,
+      "quantity": 381823,
+      "transactions": 1511,
+      "customers": 986,
+      "is_partial": false
+    },
+    {
+      "period": "2011-07-01T00:00:00",
+      "revenue": 682545.01,
+      "quantity": 396161,
+      "transactions": 1445,
+      "customers": 945,
+      "is_partial": false
+    },
+    {
+      "period": "2011-08-01T00:00:00",
+      "revenue": 715191.69,
+      "quantity": 416261,
+      "transactions": 1336,
+      "customers": 933,
+      "is_partial": false
+    },
+    {
+      "period": "2011-09-01T00:00:00",
+      "revenue": 1017641.99,
+      "quantity": 564901,
+      "transactions": 1807,
+      "customers": 1254,
+      "is_partial": false
+    },
+    {
+      "period": "2011-10-01T00:00:00",
+      "revenue": 1072898.55,
+      "quantity": 602054,
+      "transactions": 1987,
+      "customers": 1356,
+      "is_partial": false
+    },
+    {
+      "period": "2011-11-01T00:00:00",
+      "revenue": 1439152.18,
+      "quantity": 739662,
+      "transactions": 2740,
+      "customers": 1657,
+      "is_partial": false
+    },
+    {
+      "period": "2011-12-01T00:00:00",
+      "revenue": 445133.6,
+      "quantity": 231115,
+      "transactions": 811,
+      "customers": 610,
+      "is_partial": true
+    }
+  ],
+  "top_products_quantity": [
+    {
+      "StockCode": "22197",
+      "Description": "POPCORN HOLDER",
+      "quantity": 56676,
+      "revenue": 51171.77,
+      "transactions": 1389,
+      "sale_days": 294,
+      "customers": 406,
+      "first_sale": "2010-12-01T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 0.5209
+    },
+    {
+      "StockCode": "84077",
+      "Description": "WORLD WAR 2 GLIDERS ASSTD DESIGNS",
+      "quantity": 54711,
+      "revenue": 13744.41,
+      "transactions": 531,
+      "sale_days": 235,
+      "customers": 305,
+      "first_sale": "2010-12-02T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 0.1399
+    },
+    {
+      "StockCode": "85099B",
+      "Description": "JUMBO BAG RED RETROSPOT",
+      "quantity": 47490,
+      "revenue": 92601.23,
+      "transactions": 2078,
+      "sale_days": 300,
+      "customers": 633,
+      "first_sale": "2010-12-01T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 0.9427
+    },
+    {
+      "StockCode": "84879",
+      "Description": "ASSORTED COLOUR BIRD ORNAMENT",
+      "quantity": 36333,
+      "revenue": 58878.61,
+      "transactions": 1452,
+      "sale_days": 300,
+      "customers": 677,
+      "first_sale": "2010-12-01T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 0.5994
+    },
+    {
+      "StockCode": "21212",
+      "Description": "PACK OF 72 RETROSPOT CAKE CASES",
+      "quantity": 36228,
+      "revenue": 21154.05,
+      "transactions": 1315,
+      "sale_days": 298,
+      "customers": 631,
+      "first_sale": "2010-12-01T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 0.2153
+    },
+    {
+      "StockCode": "85123A",
+      "Description": "WHITE HANGING HEART T-LIGHT HOLDER",
+      "quantity": 35117,
+      "revenue": 97988.95,
+      "transactions": 2186,
+      "sale_days": 305,
+      "customers": 854,
+      "first_sale": "2010-12-01T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 0.9975
+    },
+    {
+      "StockCode": "23084",
+      "Description": "RABBIT NIGHT LIGHT",
+      "quantity": 30709,
+      "revenue": 66807.63,
+      "transactions": 991,
+      "sale_days": 136,
+      "customers": 449,
+      "first_sale": "2011-05-10T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 0.6801
+    },
+    {
+      "StockCode": "22492",
+      "Description": "MINI PAINT SET VINTAGE",
+      "quantity": 26489,
+      "revenue": 16844.22,
+      "transactions": 376,
+      "sale_days": 208,
+      "customers": 211,
+      "first_sale": "2010-12-01T00:00:00",
+      "last_sale": "2011-12-08T00:00:00",
+      "revenue_share_pct": 0.1715
+    },
+    {
+      "StockCode": "22616",
+      "Description": "PACK OF 12 LONDON TISSUES",
+      "quantity": 26107,
+      "revenue": 7971.3,
+      "transactions": 511,
+      "sale_days": 239,
+      "customers": 194,
+      "first_sale": "2010-12-01T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 0.0811
+    },
+    {
+      "StockCode": "21977",
+      "Description": "PACK OF 60 PINK PAISLEY CAKE CASES",
+      "quantity": 24748,
+      "revenue": 12186.72,
+      "transactions": 866,
+      "sale_days": 277,
+      "customers": 409,
+      "first_sale": "2010-12-01T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 0.1241
+    }
+  ],
+  "top_products_revenue": [
+    {
+      "StockCode": "22423",
+      "Description": "REGENCY CAKESTAND 3 TIER",
+      "quantity": 13506,
+      "revenue": 170229.39,
+      "transactions": 1947,
+      "sale_days": 299,
+      "customers": 873,
+      "first_sale": "2010-12-01T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 1.7329
+    },
+    {
+      "StockCode": "47566",
+      "Description": "PARTY BUNTING",
+      "quantity": 18091,
+      "revenue": 98614.83,
+      "transactions": 1675,
+      "sale_days": 294,
+      "customers": 708,
+      "first_sale": "2010-12-03T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 1.0039
+    },
+    {
+      "StockCode": "85123A",
+      "Description": "WHITE HANGING HEART T-LIGHT HOLDER",
+      "quantity": 35117,
+      "revenue": 97988.95,
+      "transactions": 2186,
+      "sale_days": 305,
+      "customers": 854,
+      "first_sale": "2010-12-01T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 0.9975
+    },
+    {
+      "StockCode": "85099B",
+      "Description": "JUMBO BAG RED RETROSPOT",
+      "quantity": 47490,
+      "revenue": 92601.23,
+      "transactions": 2078,
+      "sale_days": 300,
+      "customers": 633,
+      "first_sale": "2010-12-01T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 0.9427
+    },
+    {
+      "StockCode": "23084",
+      "Description": "RABBIT NIGHT LIGHT",
+      "quantity": 30709,
+      "revenue": 66807.63,
+      "transactions": 991,
+      "sale_days": 136,
+      "customers": 449,
+      "first_sale": "2011-05-10T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 0.6801
+    },
+    {
+      "StockCode": "22086",
+      "Description": "PAPER CHAIN KIT 50'S CHRISTMAS",
+      "quantity": 18962,
+      "revenue": 63936.94,
+      "transactions": 1153,
+      "sale_days": 161,
+      "customers": 611,
+      "first_sale": "2010-12-01T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 0.6509
+    },
+    {
+      "StockCode": "84879",
+      "Description": "ASSORTED COLOUR BIRD ORNAMENT",
+      "quantity": 36333,
+      "revenue": 58878.61,
+      "transactions": 1452,
+      "sale_days": 300,
+      "customers": 677,
+      "first_sale": "2010-12-01T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 0.5994
+    },
+    {
+      "StockCode": "79321",
+      "Description": "CHILLI LIGHTS",
+      "quantity": 10225,
+      "revenue": 53761.61,
+      "transactions": 658,
+      "sale_days": 247,
+      "customers": 204,
+      "first_sale": "2010-12-01T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 0.5473
+    },
+    {
+      "StockCode": "22197",
+      "Description": "POPCORN HOLDER",
+      "quantity": 56676,
+      "revenue": 51171.77,
+      "transactions": 1389,
+      "sale_days": 294,
+      "customers": 406,
+      "first_sale": "2010-12-01T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 0.5209
+    },
+    {
+      "StockCode": "23298",
+      "Description": "SPOTTY BUNTING",
+      "quantity": 8462,
+      "revenue": 43128.38,
+      "transactions": 1145,
+      "sale_days": 185,
+      "customers": 573,
+      "first_sale": "2011-05-04T00:00:00",
+      "last_sale": "2011-12-09T00:00:00",
+      "revenue_share_pct": 0.439
+    }
+  ],
+  "least_selling_products": [
+    {
+      "StockCode": "84227",
+      "Description": "HEN HOUSE W CHICK IN NEST",
+      "quantity": 1,
+      "revenue": 0.42,
+      "transactions": 1,
+      "sale_days": 1,
+      "customers": 1,
+      "first_sale": "2011-03-14T00:00:00",
+      "last_sale": "2011-03-14T00:00:00",
+      "revenue_share_pct": 0.0
+    },
+    {
+      "StockCode": "51014c",
+      "Description": "FEATHER PEN,COAL BLACK",
+      "quantity": 1,
+      "revenue": 0.83,
+      "transactions": 1,
+      "sale_days": 1,
+      "customers": 0,
+      "first_sale": "2011-10-31T00:00:00",
+      "last_sale": "2011-10-31T00:00:00",
+      "revenue_share_pct": 0.0
+    },
+    {
+      "StockCode": "90084",
+      "Description": "PINK CRYSTAL GUITAR PHONE CHARM",
+      "quantity": 1,
+      "revenue": 0.85,
+      "transactions": 1,
+      "sale_days": 1,
+      "customers": 1,
+      "first_sale": "2011-03-06T00:00:00",
+      "last_sale": "2011-03-06T00:00:00",
+      "revenue_share_pct": 0.0
+    },
+    {
+      "StockCode": "84743C",
+      "Description": "ORANGE FELT VASE + FLOWERS",
+      "quantity": 1,
+      "revenue": 1.25,
+      "transactions": 1,
+      "sale_days": 1,
+      "customers": 1,
+      "first_sale": "2011-03-31T00:00:00",
+      "last_sale": "2011-03-31T00:00:00",
+      "revenue_share_pct": 0.0
+    },
+    {
+      "StockCode": "37461",
+      "Description": "FUNKY MONKEY MUG",
+      "quantity": 1,
+      "revenue": 1.25,
+      "transactions": 1,
+      "sale_days": 1,
+      "customers": 1,
+      "first_sale": "2010-12-05T00:00:00",
+      "last_sale": "2010-12-05T00:00:00",
+      "revenue_share_pct": 0.0
+    },
+    {
+      "StockCode": "84569C",
+      "Description": "PACK 4 FLOWER/BUTTERFLY PATCHES",
+      "quantity": 1,
+      "revenue": 1.25,
+      "transactions": 1,
+      "sale_days": 1,
+      "customers": 1,
+      "first_sale": "2011-03-25T00:00:00",
+      "last_sale": "2011-03-25T00:00:00",
+      "revenue_share_pct": 0.0
+    },
+    {
+      "StockCode": "84977",
+      "Description": "WIRE FLOWER T-LIGHT HOLDER",
+      "quantity": 1,
+      "revenue": 1.25,
+      "transactions": 1,
+      "sale_days": 1,
+      "customers": 0,
+      "first_sale": "2011-03-18T00:00:00",
+      "last_sale": "2011-03-18T00:00:00",
+      "revenue_share_pct": 0.0
+    },
+    {
+      "StockCode": "35597A",
+      "Description": "DUSTY PINK CHRISTMAS TREE 30CM",
+      "quantity": 1,
+      "revenue": 1.25,
+      "transactions": 1,
+      "sale_days": 1,
+      "customers": 1,
+      "first_sale": "2010-12-06T00:00:00",
+      "last_sale": "2010-12-06T00:00:00",
+      "revenue_share_pct": 0.0
+    },
+    {
+      "StockCode": "21009",
+      "Description": "ETCHED GLASS STAR TREE DECORATION",
+      "quantity": 1,
+      "revenue": 1.25,
+      "transactions": 1,
+      "sale_days": 1,
+      "customers": 0,
+      "first_sale": "2010-12-17T00:00:00",
+      "last_sale": "2010-12-17T00:00:00",
+      "revenue_share_pct": 0.0
+    },
+    {
+      "StockCode": "35597B",
+      "Description": "BLACKCHRISTMAS TREE 30CM",
+      "quantity": 1,
+      "revenue": 1.25,
+      "transactions": 1,
+      "sale_days": 1,
+      "customers": 1,
+      "first_sale": "2010-12-06T00:00:00",
+      "last_sale": "2010-12-06T00:00:00",
+      "revenue_share_pct": 0.0
+    }
+  ],
+  "countries": [
+    {
+      "Country": "United Kingdom",
+      "revenue": 8321965.96,
+      "quantity": 4425770,
+      "transactions": 17792,
+      "customers": 3909,
+      "revenue_share_pct": 84.715,
+      "average_order_value": 467.74
+    },
+    {
+      "Country": "Netherlands",
+      "revenue": 283443.54,
+      "quantity": 199934,
+      "transactions": 93,
+      "customers": 9,
+      "revenue_share_pct": 2.885,
+      "average_order_value": 3047.78
+    },
+    {
+      "Country": "EIRE",
+      "revenue": 261662.56,
+      "quantity": 143112,
+      "transactions": 279,
+      "customers": 3,
+      "revenue_share_pct": 2.664,
+      "average_order_value": 937.86
+    },
+    {
+      "Country": "Germany",
+      "revenue": 203849.48,
+      "quantity": 117227,
+      "transactions": 443,
+      "customers": 94,
+      "revenue_share_pct": 2.075,
+      "average_order_value": 460.16
+    },
+    {
+      "Country": "France",
+      "revenue": 182834.59,
+      "quantity": 109884,
+      "transactions": 380,
+      "customers": 87,
+      "revenue_share_pct": 1.861,
+      "average_order_value": 481.14
+    },
+    {
+      "Country": "Australia",
+      "revenue": 137124.05,
+      "quantity": 83464,
+      "transactions": 53,
+      "customers": 9,
+      "revenue_share_pct": 1.396,
+      "average_order_value": 2587.25
+    },
+    {
+      "Country": "Switzerland",
+      "revenue": 52712.5,
+      "quantity": 30281,
+      "transactions": 48,
+      "customers": 21,
+      "revenue_share_pct": 0.537,
+      "average_order_value": 1098.18
+    },
+    {
+      "Country": "Spain",
+      "revenue": 52029.97,
+      "quantity": 26655,
+      "transactions": 87,
+      "customers": 29,
+      "revenue_share_pct": 0.53,
+      "average_order_value": 598.05
+    },
+    {
+      "Country": "Japan",
+      "revenue": 37314.37,
+      "quantity": 25976,
+      "transactions": 19,
+      "customers": 8,
+      "revenue_share_pct": 0.38,
+      "average_order_value": 1963.91
+    },
+    {
+      "Country": "Belgium",
+      "revenue": 36813.69,
+      "quantity": 22927,
+      "transactions": 98,
+      "customers": 25,
+      "revenue_share_pct": 0.375,
+      "average_order_value": 375.65
+    },
+    {
+      "Country": "Sweden",
+      "revenue": 36410.83,
+      "quantity": 35853,
+      "transactions": 33,
+      "customers": 8,
+      "revenue_share_pct": 0.371,
+      "average_order_value": 1103.36
+    },
+    {
+      "Country": "Norway",
+      "revenue": 32319.31,
+      "quantity": 19201,
+      "transactions": 31,
+      "customers": 10,
+      "revenue_share_pct": 0.329,
+      "average_order_value": 1042.56
+    },
+    {
+      "Country": "Portugal",
+      "revenue": 26831.26,
+      "quantity": 16063,
+      "transactions": 50,
+      "customers": 19,
+      "revenue_share_pct": 0.273,
+      "average_order_value": 536.63
+    },
+    {
+      "Country": "Channel Islands",
+      "revenue": 19997.54,
+      "quantity": 9481,
+      "transactions": 25,
+      "customers": 9,
+      "revenue_share_pct": 0.204,
+      "average_order_value": 799.9
+    },
+    {
+      "Country": "Finland",
+      "revenue": 18344.88,
+      "quantity": 10608,
+      "transactions": 40,
+      "customers": 12,
+      "revenue_share_pct": 0.187,
+      "average_order_value": 458.62
+    }
+  ],
+  "customers": {
+    "identified_customers": 4324,
+    "revenue_share_identified_pct": 84.63,
+    "orders_per_customer": {
+      "mean": 4.23,
+      "median": 2.0,
+      "max": 203
+    },
+    "one_time_customers_pct": 34.74,
+    "repeat_customers_pct": 65.26,
+    "top_customers": [
+      {
+        "CustomerID": 14646,
+        "revenue": 278742.02,
+        "orders": 72,
+        "country": "Netherlands"
+      },
+      {
+        "CustomerID": 18102,
+        "revenue": 259657.3,
+        "orders": 60,
+        "country": "United Kingdom"
+      },
+      {
+        "CustomerID": 17450,
+        "revenue": 189607.53,
+        "orders": 45,
+        "country": "United Kingdom"
+      },
+      {
+        "CustomerID": 14911,
+        "revenue": 129667.33,
+        "orders": 195,
+        "country": "EIRE"
+      },
+      {
+        "CustomerID": 12415,
+        "revenue": 123806.88,
+        "orders": 19,
+        "country": "Australia"
+      },
+      {
+        "CustomerID": 14156,
+        "revenue": 113866.28,
+        "orders": 54,
+        "country": "EIRE"
+      },
+      {
+        "CustomerID": 17511,
+        "revenue": 88556.38,
+        "orders": 30,
+        "country": "United Kingdom"
+      },
+      {
+        "CustomerID": 16684,
+        "revenue": 65920.12,
+        "orders": 28,
+        "country": "United Kingdom"
+      },
+      {
+        "CustomerID": 13694,
+        "revenue": 63555.3,
+        "orders": 50,
+        "country": "United Kingdom"
+      },
+      {
+        "CustomerID": 16029,
+        "revenue": 62205.93,
+        "orders": 59,
+        "country": "United Kingdom"
+      }
+    ],
+    "orders_distribution": {
+      "1": 1502,
+      "2": 833,
+      "3": 500,
+      "4": 400,
+      "5": 230,
+      "6": 176,
+      "7": 138,
+      "8": 93,
+      "9": 70,
+      "10": 55,
+      "11": 52,
+      "12": 42,
+      "13": 28,
+      "14": 20,
+      "15": 26,
+      "16": 8,
+      "17": 21,
+      "18": 13,
+      "19": 12,
+      "20": 11,
+      "21": 11,
+      "22": 5,
+      "23": 5,
+      "24": 4,
+      "25": 8,
+      "26": 5,
+      "27": 5,
+      "28": 5,
+      "29": 2,
+      "30": 5,
+      "31": 1,
+      "32": 2,
+      "33": 2,
+      "34": 4,
+      "36": 1,
+      "37": 4,
+      "39": 2,
+      "40": 1,
+      "41": 1,
+      "44": 1,
+      "45": 1,
+      "46": 1,
+      "47": 1,
+      "48": 1,
+      "50": 16
+    }
+  },
+  "day_of_week": [
+    {
+      "day_of_week": "Monday",
+      "revenue": 1663783.29,
+      "quantity": 858368,
+      "transactions": 3051.0,
+      "trading_days": 47,
+      "avg_revenue_per_trading_day": 35399.64
+    },
+    {
+      "day_of_week": "Tuesday",
+      "revenue": 1970337.28,
+      "quantity": 1020548,
+      "transactions": 3485.0,
+      "trading_days": 52,
+      "avg_revenue_per_trading_day": 37891.1
+    },
+    {
+      "day_of_week": "Wednesday",
+      "revenue": 1764575.33,
+      "quantity": 1015308,
+      "transactions": 3646.0,
+      "trading_days": 53,
+      "avg_revenue_per_trading_day": 33293.87
+    },
+    {
+      "day_of_week": "Thursday",
+      "revenue": 2100009.31,
+      "quantity": 1188924,
+      "transactions": 4185.0,
+      "trading_days": 53,
+      "avg_revenue_per_trading_day": 39622.82
+    },
+    {
+      "day_of_week": "Friday",
+      "revenue": 1533946.95,
+      "quantity": 796460,
+      "transactions": 3086.0,
+      "trading_days": 50,
+      "avg_revenue_per_trading_day": 30678.94
+    },
+    {
+      "day_of_week": "Saturday",
+      "revenue": 0.0,
+      "quantity": 0,
+      "transactions": 0.0,
+      "trading_days": 0,
+      "avg_revenue_per_trading_day": 0.0
+    },
+    {
+      "day_of_week": "Sunday",
+      "revenue": 790807.21,
+      "quantity": 458490,
+      "transactions": 2195.0,
+      "trading_days": 50,
+      "avg_revenue_per_trading_day": 15816.14
+    }
+  ],
+  "hourly": [
+    {
+      "hour": 6,
+      "transactions": 1,
+      "revenue": 4.25,
+      "quantity": 1
+    },
+    {
+      "hour": 7,
+      "transactions": 29,
+      "revenue": 30469.21,
+      "quantity": 15360
+    },
+    {
+      "hour": 8,
+      "transactions": 563,
+      "revenue": 277503.21,
+      "quantity": 157500
+    },
+    {
+      "hour": 9,
+      "transactions": 1461,
+      "revenue": 777968.79,
+      "quantity": 432048
+    },
+    {
+      "hour": 10,
+      "transactions": 2317,
+      "revenue": 1303225.62,
+      "quantity": 723904
+    },
+    {
+      "hour": 11,
+      "transactions": 2358,
+      "revenue": 1181001.6,
+      "quantity": 663249
+    },
+    {
+      "hour": 12,
+      "transactions": 3191,
+      "revenue": 1372434.25,
+      "quantity": 817729
+    },
+    {
+      "hour": 13,
+      "transactions": 2718,
+      "revenue": 1209140.45,
+      "quantity": 694267
+    },
+    {
+      "hour": 14,
+      "transactions": 2409,
+      "revenue": 1106403.66,
+      "quantity": 589646
+    },
+    {
+      "hour": 15,
+      "transactions": 2295,
+      "revenue": 1225868.52,
+      "quantity": 620138
+    },
+    {
+      "hour": 16,
+      "transactions": 1300,
+      "revenue": 702487.48,
+      "quantity": 327517
+    },
+    {
+      "hour": 17,
+      "transactions": 655,
+      "revenue": 433273.12,
+      "quantity": 189255
+    },
+    {
+      "hour": 18,
+      "transactions": 191,
+      "revenue": 138151.73,
+      "quantity": 66211
+    },
+    {
+      "hour": 19,
+      "transactions": 143,
+      "revenue": 46740.9,
+      "quantity": 31771
+    },
+    {
+      "hour": 20,
+      "transactions": 18,
+      "revenue": 18786.58,
+      "quantity": 9502
+    }
+  ],
+  "variability_summary": {
+    "products_analysed": 2753,
+    "smooth_pct": 0.0,
+    "moderate_pct": 0.8,
+    "erratic_pct": 99.2,
+    "median_cv": 2.875
+  },
+  "seasonality_note": "The data covers ~12 months (Dec 2010 - Dec 2011): one seasonal cycle. Annual seasonality cannot be statistically confirmed."
+}

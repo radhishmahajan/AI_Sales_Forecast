@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-11-14T17:14:52Z",
+  "source": "dataset-derived (cleaned SALE rows)",
+  "abc_thresholds": {
+    "A_up_to_cumulative_share": 0.8,
+    "B_up_to_cumulative_share": 0.95
+  },
+  "abc_summary": [
+    {
+      "class": "A",
+      "products": 844,
+      "product_share_pct": 21.62,
+      "revenue": 7861390.29,
+      "revenue_share_pct": 80.03
+    },
+    {
+      "class": "B",
+      "products": 978,
+      "product_share_pct": 25.06,
+      "revenue": 1471407.0,
+      "revenue_share_pct": 14.98
+    },
+    {
+      "class": "C",
+      "products": 2081,
+      "product_share_pct": 53.32,
+      "revenue": 490662.08,
+      "revenue_share_pct": 4.99
+    }
+  ]
+}

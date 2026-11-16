@@ -1,0 +1,55 @@
+# --- Large data files stay OUT of the repository ---
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+*.xlsx
+*.parquet
+
+# --- Trained model binaries (re-create with: python -m ml.pipeline) ---
+artifacts/*.joblib
+artifacts/.*.tmp
+
+# --- Runtime records (created by the running application) ---
+storage/raw/*
+!storage/raw/.gitkeep
+storage/processed/*
+!storage/processed/.gitkeep
+storage/forecasts/*
+!storage/forecasts/.gitkeep
+storage/inventory/*
+!storage/inventory/.gitkeep
+storage/reports/*
+!storage/reports/.gitkeep
+storage/products/*
+!storage/products/.gitkeep
+storage/*.json
+storage/*.log
+*.tmp
+*.corrupt-*
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+*.egg-info/
+.coverage
+htmlcov/
+
+# --- Node / frontend ---
+node_modules/
+frontend/dist/
+frontend/.env
+.vite/
+*.tsbuildinfo
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.env

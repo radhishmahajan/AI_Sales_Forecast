@@ -1,0 +1,546 @@
+{
+  "report": "Stage 1 - Dataset Overview",
+  "generated_at": "2026-11-14T17:09:10Z",
+  "loaded_from_cache": true,
+  "purposes": {
+    "file_info": "Confirms which file was analysed (name, size, SHA-256 fingerprint) so results are reproducible.",
+    "dimensions": "Shows how big the dataset is: rows = invoice lines, columns = attributes.",
+    "columns": "Lists every column with its data type, meaning, missing values and number of distinct values.",
+    "type_coercion": "Reports values that could not be converted to the correct type (e.g. text in a number column).",
+    "head": "The first five rows: a quick look at what the raw data looks like.",
+    "tail": "The last five rows: confirms the file was read to the end and shows the latest records.",
+    "sample": "Five random rows (fixed seed 42, so reproducible) to see typical records from the middle of the file.",
+    "data_info": "Data types and memory usage, like DataFrame.info().",
+    "numeric_summary": "Count, mean, standard deviation, min/max and percentiles of numeric columns. Negative or extreme values here hint at returns and outliers.",
+    "categorical_summary": "Most frequent value and number of distinct values for text columns.",
+    "date_range": "First and last transaction timestamps and how many days the data covers.",
+    "missing_values": "How many values are empty in each column. Missing CustomerID matters for customer analysis but not for product demand.",
+    "duplicates": "Rows that are exact copies across all 8 columns. They may be data-entry duplicates and are reviewed in Stage 3.",
+    "unique_counts": "Number of distinct products, customers, invoices and countries.",
+    "quality_observations": "Early warning signs (cancellations, negative quantities, zero prices, non-product codes). Observed only; handled in Stage 3.",
+    "uci_documented_check": "Compares what we actually found with what UCI documents, without assuming either is correct."
+  },
+  "file_info": {
+    "file_name": "Online Retail.xlsx",
+    "file_size_bytes": 23715344,
+    "file_size_mb": 22.62,
+    "extension": ".xlsx",
+    "sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d"
+  },
+  "load_warnings": [],
+  "dimensions": {
+    "rows": 541909,
+    "columns": 8
+  },
+  "columns": [
+    {
+      "name": "InvoiceNo",
+      "dtype": "string",
+      "expected_dtype": "string",
+      "description": "Invoice number. A 6-digit number per transaction; a leading 'C' means the invoice was cancelled.",
+      "non_null": 541909,
+      "missing": 0,
+      "missing_pct": 0.0,
+      "unique": 25900
+    },
+    {
+      "name": "StockCode",
+      "dtype": "string",
+      "expected_dtype": "string",
+      "description": "Product (item) code that uniquely identifies a product.",
+      "non_null": 541909,
+      "missing": 0,
+      "missing_pct": 0.0,
+      "unique": 4070
+    },
+    {
+      "name": "Description",
+      "dtype": "string",
+      "expected_dtype": "string",
+      "description": "Product name / description text.",
+      "non_null": 540455,
+      "missing": 1454,
+      "missing_pct": 0.268,
+      "unique": 4211
+    },
+    {
+      "name": "Quantity",
+      "dtype": "Int64",
+      "expected_dtype": "Int64",
+      "description": "Number of units of the product on that invoice line. Negative values indicate returns/cancellations.",
+      "non_null": 541909,
+      "missing": 0,
+      "missing_pct": 0.0,
+      "unique": 722
+    },
+    {
+      "name": "InvoiceDate",
+      "dtype": "datetime64[ns]",
+      "expected_dtype": "datetime64[ns]",
+      "description": "Date and time when the invoice was generated.",
+      "non_null": 541909,
+      "missing": 0,
+      "missing_pct": 0.0,
+      "unique": 23260
+    },
+    {
+      "name": "UnitPrice",
+      "dtype": "float64",
+      "expected_dtype": "float64",
+      "description": "Price per unit in pounds sterling (GBP).",
+      "non_null": 541909,
+      "missing": 0,
+      "missing_pct": 0.0,
+      "unique": 1630
+    },
+    {
+      "name": "CustomerID",
+      "dtype": "Int64",
+      "expected_dtype": "Int64",
+      "description": "5-digit customer identifier. Missing for some (often guest) transactions.",
+      "non_null": 406829,
+      "missing": 135080,
+      "missing_pct": 24.927,
+      "unique": 4372
+    },
+    {
+      "name": "Country",
+      "dtype": "string",
+      "expected_dtype": "string",
+      "description": "Country where the customer resides.",
+      "non_null": 541909,
+      "missing": 0,
+      "missing_pct": 0.0,
+      "unique": 38
+    }
+  ],
+  "type_coercion": {
+    "InvoiceNo": {
+      "missing_before": 0,
+      "invalid_coerced": 0
+    },
+    "StockCode": {
+      "missing_before": 0,
+      "invalid_coerced": 0
+    },
+    "Description": {
+      "missing_before": 1454,
+      "invalid_coerced": 0
+    },
+    "Country": {
+      "missing_before": 0,
+      "invalid_coerced": 0
+    },
+    "Quantity": {
+      "missing_before": 0,
+      "invalid_coerced": 0
+    },
+    "CustomerID": {
+      "missing_before": 135080,
+      "invalid_coerced": 0
+    },
+    "UnitPrice": {
+      "missing_before": 0,
+      "invalid_coerced": 0
+    },
+    "InvoiceDate": {
+      "missing_before": 0,
+      "invalid_coerced": 0
+    }
+  },
+  "head": [
+    {
+      "InvoiceNo": "536365",
+      "StockCode": "85123A",
+      "Description": "WHITE HANGING HEART T-LIGHT HOLDER",
+      "Quantity": 6,
+      "InvoiceDate": "2010-12-01T08:26:00",
+      "UnitPrice": 2.55,
+      "CustomerID": 17850,
+      "Country": "United Kingdom"
+    },
+    {
+      "InvoiceNo": "536365",
+      "StockCode": "71053",
+      "Description": "WHITE METAL LANTERN",
+      "Quantity": 6,
+      "InvoiceDate": "2010-12-01T08:26:00",
+      "UnitPrice": 3.39,
+      "CustomerID": 17850,
+      "Country": "United Kingdom"
+    },
+    {
+      "InvoiceNo": "536365",
+      "StockCode": "84406B",
+      "Description": "CREAM CUPID HEARTS COAT HANGER",
+      "Quantity": 8,
+      "InvoiceDate": "2010-12-01T08:26:00",
+      "UnitPrice": 2.75,
+      "CustomerID": 17850,
+      "Country": "United Kingdom"
+    },
+    {
+      "InvoiceNo": "536365",
+      "StockCode": "84029G",
+      "Description": "KNITTED UNION FLAG HOT WATER BOTTLE",
+      "Quantity": 6,
+      "InvoiceDate": "2010-12-01T08:26:00",
+      "UnitPrice": 3.39,
+      "CustomerID": 17850,
+      "Country": "United Kingdom"
+    },
+    {
+      "InvoiceNo": "536365",
+      "StockCode": "84029E",
+      "Description": "RED WOOLLY HOTTIE WHITE HEART.",
+      "Quantity": 6,
+      "InvoiceDate": "2010-12-01T08:26:00",
+      "UnitPrice": 3.39,
+      "CustomerID": 17850,
+      "Country": "United Kingdom"
+    }
+  ],
+  "tail": [
+    {
+      "InvoiceNo": "581587",
+      "StockCode": "22613",
+      "Description": "PACK OF 20 SPACEBOY NAPKINS",
+      "Quantity": 12,
+      "InvoiceDate": "2011-12-09T12:50:00",
+      "UnitPrice": 0.85,
+      "CustomerID": 12680,
+      "Country": "France"
+    },
+    {
+      "InvoiceNo": "581587",
+      "StockCode": "22899",
+      "Description": "CHILDREN'S APRON DOLLY GIRL",
+      "Quantity": 6,
+      "InvoiceDate": "2011-12-09T12:50:00",
+      "UnitPrice": 2.1,
+      "CustomerID": 12680,
+      "Country": "France"
+    },
+    {
+      "InvoiceNo": "581587",
+      "StockCode": "23254",
+      "Description": "CHILDRENS CUTLERY DOLLY GIRL",
+      "Quantity": 4,
+      "InvoiceDate": "2011-12-09T12:50:00",
+      "UnitPrice": 4.15,
+      "CustomerID": 12680,
+      "Country": "France"
+    },
+    {
+      "InvoiceNo": "581587",
+      "StockCode": "23255",
+      "Description": "CHILDRENS CUTLERY CIRCUS PARADE",
+      "Quantity": 4,
+      "InvoiceDate": "2011-12-09T12:50:00",
+      "UnitPrice": 4.15,
+      "CustomerID": 12680,
+      "Country": "France"
+    },
+    {
+      "InvoiceNo": "581587",
+      "StockCode": "22138",
+      "Description": "BAKING SET 9 PIECE RETROSPOT",
+      "Quantity": 3,
+      "InvoiceDate": "2011-12-09T12:50:00",
+      "UnitPrice": 4.95,
+      "CustomerID": 12680,
+      "Country": "France"
+    }
+  ],
+  "sample": [
+    {
+      "InvoiceNo": "555200",
+      "StockCode": "71459",
+      "Description": "HANGING JAM JAR T-LIGHT HOLDER",
+      "Quantity": 24,
+      "InvoiceDate": "2011-06-01T12:05:00",
+      "UnitPrice": 0.85,
+      "CustomerID": 17315,
+      "Country": "United Kingdom"
+    },
+    {
+      "InvoiceNo": "554974",
+      "StockCode": "21128",
+      "Description": "GOLD FISHING GNOME",
+      "Quantity": 4,
+      "InvoiceDate": "2011-05-27T17:14:00",
+      "UnitPrice": 6.95,
+      "CustomerID": 14031,
+      "Country": "United Kingdom"
+    },
+    {
+      "InvoiceNo": "550972",
+      "StockCode": "21086",
+      "Description": "SET/6 RED SPOTTY PAPER CUPS",
+      "Quantity": 4,
+      "InvoiceDate": "2011-04-21T17:05:00",
+      "UnitPrice": 0.65,
+      "CustomerID": 14031,
+      "Country": "United Kingdom"
+    },
+    {
+      "InvoiceNo": "576652",
+      "StockCode": "22812",
+      "Description": "PACK 3 BOXES CHRISTMAS PANETTONE",
+      "Quantity": 3,
+      "InvoiceDate": "2011-11-16T10:39:00",
+      "UnitPrice": 1.95,
+      "CustomerID": 17198,
+      "Country": "United Kingdom"
+    },
+    {
+      "InvoiceNo": "546157",
+      "StockCode": "22180",
+      "Description": "RETROSPOT LAMP",
+      "Quantity": 2,
+      "InvoiceDate": "2011-03-10T08:40:00",
+      "UnitPrice": 9.95,
+      "CustomerID": 13502,
+      "Country": "United Kingdom"
+    }
+  ],
+  "data_info": {
+    "dtypes": {
+      "InvoiceNo": "string",
+      "StockCode": "string",
+      "Description": "string",
+      "Quantity": "Int64",
+      "InvoiceDate": "datetime64[ns]",
+      "UnitPrice": "float64",
+      "CustomerID": "Int64",
+      "Country": "string"
+    },
+    "memory_usage_mb": 60.64
+  },
+  "numeric_summary": {
+    "Quantity": {
+      "count": 541909.0,
+      "mean": 9.55224954743324,
+      "std": 218.08115785023386,
+      "min": -80995.0,
+      "1%": -2.0,
+      "5%": 1.0,
+      "25%": 1.0,
+      "50%": 3.0,
+      "75%": 10.0,
+      "95%": 29.0,
+      "99%": 100.0,
+      "max": 80995.0,
+      "negative_count": 10624,
+      "zero_count": 0
+    },
+    "UnitPrice": {
+      "count": 541909.0,
+      "mean": 4.611113626088514,
+      "std": 96.75985306117937,
+      "min": -11062.06,
+      "1%": 0.19,
+      "5%": 0.42,
+      "25%": 1.25,
+      "50%": 2.08,
+      "75%": 4.13,
+      "95%": 9.95,
+      "99%": 18.0,
+      "max": 38970.0,
+      "negative_count": 2,
+      "zero_count": 2515
+    }
+  },
+  "categorical_summary": {
+    "InvoiceNo": {
+      "count": 541909,
+      "unique": 25900,
+      "top": "573585",
+      "top_frequency": 1114
+    },
+    "StockCode": {
+      "count": 541909,
+      "unique": 4070,
+      "top": "85123A",
+      "top_frequency": 2313
+    },
+    "Description": {
+      "count": 540455,
+      "unique": 4211,
+      "top": "WHITE HANGING HEART T-LIGHT HOLDER",
+      "top_frequency": 2369
+    },
+    "Country": {
+      "count": 541909,
+      "unique": 38,
+      "top": "United Kingdom",
+      "top_frequency": 495478
+    }
+  },
+  "date_range": {
+    "min": "2010-12-01T08:26:00",
+    "max": "2011-12-09T12:50:00",
+    "span_days": 374,
+    "distinct_transaction_days": 305,
+    "months_covered": [
+      "2010-12",
+      "2011-01",
+      "2011-02",
+      "2011-03",
+      "2011-04",
+      "2011-05",
+      "2011-06",
+      "2011-07",
+      "2011-08",
+      "2011-09",
+      "2011-10",
+      "2011-11",
+      "2011-12"
+    ]
+  },
+  "missing_values": {
+    "per_column": {
+      "InvoiceNo": 0,
+      "StockCode": 0,
+      "Description": 1454,
+      "Quantity": 0,
+      "InvoiceDate": 0,
+      "UnitPrice": 0,
+      "CustomerID": 135080,
+      "Country": 0
+    },
+    "per_column_pct": {
+      "InvoiceNo": 0.0,
+      "StockCode": 0.0,
+      "Description": 0.268,
+      "Quantity": 0.0,
+      "InvoiceDate": 0.0,
+      "UnitPrice": 0.0,
+      "CustomerID": 24.927,
+      "Country": 0.0
+    },
+    "rows_with_any_missing": 135080,
+    "total_missing_cells": 136534
+  },
+  "duplicates": {
+    "exact_duplicate_rows": 5268,
+    "exact_duplicate_pct": 0.972,
+    "rows_involved_in_duplication": 10147,
+    "duplicate_groups": 4879,
+    "examples": [
+      {
+        "InvoiceNo": "536409",
+        "StockCode": "21866",
+        "Description": "UNION JACK FLAG LUGGAGE TAG",
+        "Quantity": 1,
+        "InvoiceDate": "2010-12-01T11:45:00",
+        "UnitPrice": 1.25,
+        "CustomerID": 17908,
+        "Country": "United Kingdom"
+      },
+      {
+        "InvoiceNo": "536409",
+        "StockCode": "21866",
+        "Description": "UNION JACK FLAG LUGGAGE TAG",
+        "Quantity": 1,
+        "InvoiceDate": "2010-12-01T11:45:00",
+        "UnitPrice": 1.25,
+        "CustomerID": 17908,
+        "Country": "United Kingdom"
+      },
+      {
+        "InvoiceNo": "536409",
+        "StockCode": "22111",
+        "Description": "SCOTTIE DOG HOT WATER BOTTLE",
+        "Quantity": 1,
+        "InvoiceDate": "2010-12-01T11:45:00",
+        "UnitPrice": 4.95,
+        "CustomerID": 17908,
+        "Country": "United Kingdom"
+      },
+      {
+        "InvoiceNo": "536409",
+        "StockCode": "22111",
+        "Description": "SCOTTIE DOG HOT WATER BOTTLE",
+        "Quantity": 1,
+        "InvoiceDate": "2010-12-01T11:45:00",
+        "UnitPrice": 4.95,
+        "CustomerID": 17908,
+        "Country": "United Kingdom"
+      },
+      {
+        "InvoiceNo": "536409",
+        "StockCode": "22866",
+        "Description": "HAND WARMER SCOTTY DOG DESIGN",
+        "Quantity": 1,
+        "InvoiceDate": "2010-12-01T11:45:00",
+        "UnitPrice": 2.1,
+        "CustomerID": 17908,
+        "Country": "United Kingdom"
+      },
+      {
+        "InvoiceNo": "536409",
+        "StockCode": "22866",
+        "Description": "HAND WARMER SCOTTY DOG DESIGN",
+        "Quantity": 1,
+        "InvoiceDate": "2010-12-01T11:45:00",
+        "UnitPrice": 2.1,
+        "CustomerID": 17908,
+        "Country": "United Kingdom"
+      }
+    ]
+  },
+  "unique_counts": {
+    "products_stockcode": 4070,
+    "descriptions": 4211,
+    "customers": 4372,
+    "invoices": 25900,
+    "cancelled_invoices": 3836,
+    "countries": 38
+  },
+  "quality_observations": {
+    "cancellation_rows_invoice_starts_with_C": 9288,
+    "negative_quantity_rows": 10624,
+    "negative_quantity_rows_not_cancelled": 1336,
+    "zero_quantity_rows": 0,
+    "zero_unit_price_rows": 2515,
+    "negative_unit_price_rows": 2,
+    "missing_customer_id_rows": 135080,
+    "missing_description_rows": 1454,
+    "non_standard_stockcode_rows": 2995,
+    "non_standard_stockcode_examples": {
+      "POST": 1256,
+      "DOT": 710,
+      "M": 571,
+      "C2": 144,
+      "D": 77,
+      "S": 63,
+      "BANK CHARGES": 37,
+      "AMAZONFEE": 34,
+      "CRUK": 16,
+      "DCGSSGIRL": 13,
+      "DCGSSBOY": 11,
+      "gift_0001_20": 10,
+      "gift_0001_10": 9,
+      "gift_0001_30": 8,
+      "DCGS0003": 5
+    },
+    "stockcodes_with_multiple_descriptions": 647,
+    "note": "These are observations only. Stage 3 (preprocessing) decides how each case is handled."
+  },
+  "uci_documented_check": {
+    "documented": {
+      "rows": 541909,
+      "columns": 8,
+      "period": "2010-12 to 2011-12"
+    },
+    "observed": {
+      "rows": 541909,
+      "columns": 8,
+      "period": "2010-12 to 2011-12"
+    },
+    "rows_match": true,
+    "columns_match": true,
+    "period_match": true
+  }
+}

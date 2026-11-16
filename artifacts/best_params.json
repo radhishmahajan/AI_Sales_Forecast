@@ -1,0 +1,26 @@
+{
+  "linear_regression": {},
+  "random_forest": {
+    "model__n_estimators": 300,
+    "model__min_samples_split": 20,
+    "model__min_samples_leaf": 3,
+    "model__max_features": 0.5,
+    "model__max_depth": 8
+  },
+  "hist_gradient_boosting": {
+    "model__l2_regularization": 1.0,
+    "model__learning_rate": 0.05022164887854354,
+    "model__loss": "poisson",
+    "model__max_iter": 400,
+    "model__max_leaf_nodes": 31
+  },
+  "xgboost": {
+    "model__colsample_bytree": 0.5779972601681014,
+    "model__learning_rate": 0.022861967752626437,
+    "model__max_depth": 8,
+    "model__n_estimators": 199,
+    "model__objective": "reg:tweedie",
+    "model__subsample": 0.608233797718321,
+    "model__tweedie_variance_power": 1.35
+  }
+}

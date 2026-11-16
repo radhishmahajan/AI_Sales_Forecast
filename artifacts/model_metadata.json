@@ -1,0 +1,263 @@
+{
+  "model_name": "hist_gradient_boosting",
+  "model_description": "HistGradientBoosting: trees added one after another, each fixing the previous errors (binned features, fast).",
+  "model_version": "1.0",
+  "trained_at": "2026-11-14T17:26:46Z",
+  "target": "NEXT_DAY_DEMAND",
+  "target_definition": "Gross fulfilled demand: units of the product sold on date D (SALE rows), forecast from information up to D-1.",
+  "features": [
+    "lag_1",
+    "lag_7",
+    "lag_14",
+    "lag_28",
+    "last_open_day_demand",
+    "prev_day_open",
+    "rolling_mean_7",
+    "rolling_mean_14",
+    "rolling_mean_28",
+    "rolling_std_7",
+    "rolling_max_7",
+    "day",
+    "month",
+    "year",
+    "day_of_week",
+    "week_of_year",
+    "is_weekend",
+    "is_month_start",
+    "is_month_end",
+    "last_known_price",
+    "avg_price_28",
+    "price_change_pct",
+    "sales_frequency",
+    "days_since_prev_sale",
+    "hist_mean_demand",
+    "hist_std_demand",
+    "product_age_days"
+  ],
+  "selection_rule": "Lowest validation MAE among ML models (tuned with rolling-origin CV on training dates only).",
+  "hyperparameters": {
+    "model__l2_regularization": 1.0,
+    "model__learning_rate": 0.05022164887854354,
+    "model__loss": "poisson",
+    "model__max_iter": 400,
+    "model__max_leaf_nodes": 31
+  },
+  "all_tuning": {
+    "linear_regression": {
+      "best_params": {},
+      "cv_mae": null,
+      "cv_folds": 0,
+      "candidates": 0
+    },
+    "random_forest": {
+      "best_params": {
+        "model__n_estimators": 300,
+        "model__min_samples_split": 20,
+        "model__min_samples_leaf": 3,
+        "model__max_features": 0.5,
+        "model__max_depth": 8
+      },
+      "cv_mae": 19.42331051440509,
+      "cv_folds": 3,
+      "candidates": 6,
+      "cv_fold_periods": [
+        {
+          "train_until": "2011-03-02T00:00:00",
+          "validate": [
+            "2011-03-03T00:00:00",
+            "2011-05-05T00:00:00"
+          ]
+        },
+        {
+          "train_until": "2011-05-05T00:00:00",
+          "validate": [
+            "2011-05-06T00:00:00",
+            "2011-07-04T00:00:00"
+          ]
+        },
+        {
+          "train_until": "2011-07-04T00:00:00",
+          "validate": [
+            "2011-07-05T00:00:00",
+            "2011-08-31T00:00:00"
+          ]
+        }
+      ]
+    },
+    "hist_gradient_boosting": {
+      "best_params": {
+        "model__l2_regularization": 1.0,
+        "model__learning_rate": 0.05022164887854354,
+        "model__loss": "poisson",
+        "model__max_iter": 400,
+        "model__max_leaf_nodes": 31
+      },
+      "cv_mae": 18.087297842060696,
+      "cv_folds": 3,
+      "candidates": 12,
+      "cv_fold_periods": [
+        {
+          "train_until": "2011-03-02T00:00:00",
+          "validate": [
+            "2011-03-03T00:00:00",
+            "2011-05-05T00:00:00"
+          ]
+        },
+        {
+          "train_until": "2011-05-05T00:00:00",
+          "validate": [
+            "2011-05-06T00:00:00",
+            "2011-07-04T00:00:00"
+          ]
+        },
+        {
+          "train_until": "2011-07-04T00:00:00",
+          "validate": [
+            "2011-07-05T00:00:00",
+            "2011-08-31T00:00:00"
+          ]
+        }
+      ]
+    },
+    "xgboost": {
+      "best_params": {
+        "model__colsample_bytree": 0.5779972601681014,
+        "model__learning_rate": 0.022861967752626437,
+        "model__max_depth": 8,
+        "model__n_estimators": 199,
+        "model__objective": "reg:tweedie",
+        "model__subsample": 0.608233797718321,
+        "model__tweedie_variance_power": 1.35
+      },
+      "cv_mae": 16.804499497633504,
+      "cv_folds": 3,
+      "candidates": 12,
+      "cv_fold_periods": [
+        {
+          "train_until": "2011-03-02T00:00:00",
+          "validate": [
+            "2011-03-03T00:00:00",
+            "2011-05-05T00:00:00"
+          ]
+        },
+        {
+          "train_until": "2011-05-05T00:00:00",
+          "validate": [
+            "2011-05-06T00:00:00",
+            "2011-07-04T00:00:00"
+          ]
+        },
+        {
+          "train_until": "2011-07-04T00:00:00",
+          "validate": [
+            "2011-07-05T00:00:00",
+            "2011-08-31T00:00:00"
+          ]
+        }
+      ]
+    }
+  },
+  "loss_function_experiment": [
+    {
+      "loss": "squared_error",
+      "validation_mae": 19.534725314461948,
+      "validation_wape_pct": 91.0973657758816,
+      "validation_bias": -4.620117894548661,
+      "bias_pct_of_mean_demand": -21.545251494056533
+    },
+    {
+      "loss": "poisson",
+      "validation_mae": 18.558816156924426,
+      "validation_wape_pct": 86.54635458646847,
+      "validation_bias": -6.807152595705024,
+      "bias_pct_of_mean_demand": -31.74417146496039
+    },
+    {
+      "loss": "absolute_error",
+      "validation_mae": 17.726546834021388,
+      "validation_wape_pct": 82.6651869881499,
+      "validation_bias": -13.239871831975632,
+      "bias_pct_of_mean_demand": -61.74222712056066
+    }
+  ],
+  "loss_function_note": "Absolute-error loss is excluded from tuning: it predicts the median and under-forecasts total demand (see loss_function_experiment bias), which would cause stockouts.",
+  "training_seconds": {
+    "linear_regression": 0.3,
+    "random_forest": 271.6,
+    "hist_gradient_boosting": 190.8,
+    "xgboost": 56.0
+  },
+  "split": {
+    "unit": "unique dates of model rows",
+    "n_dates": 285,
+    "train": {
+      "start": "2011-01-04T00:00:00",
+      "end": "2011-08-31T00:00:00"
+    },
+    "validation": {
+      "start": "2011-09-01T00:00:00",
+      "end": "2011-10-20T00:00:00"
+    },
+    "test": {
+      "start": "2011-10-21T00:00:00",
+      "end": "2011-12-09T00:00:00"
+    },
+    "rows": {
+      "train": 96328,
+      "validation": 21472,
+      "test": 20900
+    }
+  },
+  "final_fit": "Selected model refit on all model rows (train + validation + test) with the same hyperparameters. Reported test metrics come from the train+validation fit evaluated on the untouched test period.",
+  "metrics_validation": {
+    "model": "hist_gradient_boosting",
+    "type": "ml",
+    "split": "validation",
+    "n": 21472,
+    "mae": 18.42415854357308,
+    "rmse": 58.526867150238715,
+    "wape_pct": 85.91839828503568,
+    "mape_pct": 63.499384254917146,
+    "mape_coverage_pct": 52.96665424739195,
+    "r2": 0.07744047439661905,
+    "bias": -7.904121245802385
+  },
+  "metrics_test": {
+    "model": "hist_gradient_boosting",
+    "type": "ml",
+    "split": "test",
+    "n": 20900,
+    "mae": 21.274879276482572,
+    "rmse": 70.55423365822926,
+    "wape_pct": 89.18996521391306,
+    "mape_pct": 87.83352554951605,
+    "mape_coverage_pct": 58.3732057416268,
+    "r2": 0.13219914086562812,
+    "bias": -2.2628699273246187
+  },
+  "baseline_comparison": {
+    "best_model": "hist_gradient_boosting",
+    "best_baseline": "baseline_moving_average_7",
+    "test_mae_model": 21.274879276482572,
+    "test_mae_baseline": 21.22645933014354,
+    "mae_improvement_pct": -0.22811127181380794,
+    "test_wape_model": 89.18996521391306,
+    "test_wape_baseline": 88.98697589145841,
+    "beats_baseline": false
+  },
+  "clip_rule": "Predictions below 0 are set to 0 because demand cannot be negative.",
+  "price_policy": "Last known price held constant during forecasting; no future prices are used.",
+  "products_modelled": 500,
+  "model_rows": 138700,
+  "data_end_date": "2011-12-09T00:00:00",
+  "closed_weekdays": [
+    5
+  ],
+  "library_versions": {
+    "scikit-learn": "1.9.1",
+    "pandas": "3.0.5",
+    "numpy": "2.5.3",
+    "xgboost": "3.4.1"
+  },
+  "uncertainty": "No prediction intervals are produced (no validated uncertainty method implemented)."
+}
