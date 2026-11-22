@@ -1,0 +1,104 @@
+{
+  "run_id": "aaaeb64a7b1d",
+  "state": "completed",
+  "pid": 3400,
+  "started_at": "2026-11-14T17:09:07Z",
+  "finished_at": "2026-11-14T17:14:52Z",
+  "current_step": null,
+  "error": null,
+  "log": [
+    "17:09:07 Started: Load & validate dataset",
+    "17:09:10 Rows loaded: 541,909",
+    "17:09:10 Finished: Load & validate dataset (2.8s)",
+    "17:09:10 Started: Clean & preprocess",
+    "17:09:16 Clean sale rows: 519,735",
+    "17:09:16 Finished: Clean & preprocess (6.1s)",
+    "17:09:16 Started: Exploratory data analysis",
+    "17:09:20 Finished: Exploratory data analysis (3.6s)",
+    "17:09:20 Started: Feature engineering & split",
+    "17:09:21 Model rows: 138,700 for 500 products",
+    "17:09:21 Finished: Feature engineering & split (1.1s)",
+    "17:09:21 Started: Train, tune & select models",
+    "17:09:21 Loss-function design check on validation data",
+    "17:09:28 Tuning linear_regression (no hyperparameters)",
+    "17:09:28 linear_regression: validation MAE 19.312 (0.3s)",
+    "17:09:28 Tuning random_forest (6 candidates x 3 folds)",
+    "17:11:45 random_forest: validation MAE 20.389 (136.3s)",
+    "17:11:45 Tuning hist_gradient_boosting (12 candidates x 3 folds)",
+    "17:12:39 hist_gradient_boosting: validation MAE 18.424 (54.1s)",
+    "17:12:39 Tuning xgboost (12 candidates x 3 folds)",
+    "17:13:32 xgboost: validation MAE 18.490 (53.4s)",
+    "17:13:32 Selected by validation MAE: hist_gradient_boosting",
+    "17:13:32 Refitting linear_regression on train+validation for the test evaluation",
+    "17:13:33 Refitting random_forest on train+validation for the test evaluation",
+    "17:14:07 Refitting hist_gradient_boosting on train+validation for the test evaluation",
+    "17:14:10 Refitting xgboost on train+validation for the test evaluation",
+    "17:14:13 Refitting hist_gradient_boosting on all data for live forecasting",
+    "17:14:17 Finished: Train, tune & select models (295.9s)",
+    "17:14:17 Started: Evaluate on test period",
+    "17:14:17 Recursive backtest from 2011-10-20 (model trained only up to that date)",
+    "17:14:25 Recursive backtest from 2011-08-31 (validation period, model trained on training data only)",
+    "17:14:34 Finished: Evaluate on test period (16.9s)",
+    "17:14:34 Started: Explain model",
+    "17:14:50 Finished: Explain model (16.5s)",
+    "17:14:50 Started: Product catalog & ABC analysis",
+    "17:14:52 Finished: Product catalog & ABC analysis (1.2s)",
+    "17:14:52 Pipeline completed successfully"
+  ],
+  "steps": [
+    {
+      "name": "load_validate",
+      "label": "Load & validate dataset",
+      "state": "completed",
+      "seconds": 2.8
+    },
+    {
+      "name": "preprocess",
+      "label": "Clean & preprocess",
+      "state": "completed",
+      "seconds": 6.1
+    },
+    {
+      "name": "eda",
+      "label": "Exploratory data analysis",
+      "state": "completed",
+      "seconds": 3.6
+    },
+    {
+      "name": "features",
+      "label": "Feature engineering & split",
+      "state": "completed",
+      "seconds": 1.1
+    },
+    {
+      "name": "train",
+      "label": "Train, tune & select models",
+      "state": "completed",
+      "seconds": 295.9
+    },
+    {
+      "name": "evaluate",
+      "label": "Evaluate on test period",
+      "state": "completed",
+      "seconds": 16.9
+    },
+    {
+      "name": "explain",
+      "label": "Explain model",
+      "state": "completed",
+      "seconds": 16.5
+    },
+    {
+      "name": "catalog",
+      "label": "Product catalog & ABC analysis",
+      "state": "completed",
+      "seconds": 1.2
+    }
+  ],
+  "heartbeat": "2026-11-14T17:14:52Z",
+  "result": {
+    "best_model": "hist_gradient_boosting",
+    "test_mae": 21.274879276482572,
+    "test_wape_pct": 89.18996521391306
+  }
+}
