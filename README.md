@@ -216,5 +216,3 @@ forecasts and those inputs. Every value in the UI is tagged *dataset-derived*, *
 
 ## License and data credit
 Code: MIT. Dataset: Chen, D. (2012). *Online Retail* [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5BW33 (CC BY 4.0).
-#   A I _ S a l e s _ F o r e c a s t  
- 
